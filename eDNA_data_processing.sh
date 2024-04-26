@@ -9,7 +9,7 @@ cutadapt -g ACTTGCCTGTCGCTCTATCTTCAWACTTCVGGRTGVCCAAARAATCA --revcomp -o Without
 
 # Doing the blast over the EBE database  (it can take a while)
 
-blastn -query Without_Primers2.fasta -db /mnt/ebe/blobtools/nt/nt -out Blast_res.csv -outfmt "6 qseqid qlen sseqid slen length gaps qcovs pident staxids"
+blastn -query Without_Primers2.fasta -db /mnt/ebe/blobtools/nt/nt -out Blast_res.txt -outfmt "6 qseqid qlen sseqid slen length gaps qcovs pident staxids"
 
 # Cleaning the low query value allignement 
 
