@@ -7,9 +7,9 @@
 cutadapt -g TTTCTGTTGGTGCTGATATTGCCHACWAAYCATAAAGATATYGG --revcomp -o Without_Primers.fasta Sequences.fasta
 cutadapt -g ACTTGCCTGTCGCTCTATCTTCAWACTTCVGGRTGVCCAAARAATCA --revcomp -o Without_Primers2.fasta Without_Primers.fasta
 
-# Doing the blast over NCBI data base (it can take a while)
+# Doing the blast over the EBE database  (it can take a while)
 
-blastn -query Without_Primers2.fasta -db nt -remote -out Blast_res.txt -outfmt "6 qseqid qlen sseqid slen length gaps qcovs pident staxids"
+blastn -query Without_Primers2.fasta -db /mnt/ebe/blobtools/nt/nt -out Blast_res.csv -outfmt "6 qseqid qlen sseqid slen length gaps qcovs pident staxids"
 
 # Cleaning the low query value allignement 
 
