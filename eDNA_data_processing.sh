@@ -17,7 +17,7 @@ blastn -query Without_Primers2.fasta -db nt -remote -out Blast_res.txt -outfmt "
 
 echo "########recovering the identity of each tax ID and putting it into a tsv file (this can also take a while)###########"
 
-datasets summary taxonomy taxon $(<High_query_blast_res.txt) --as-json-lines | dataformat tsv taxonomy --template tax-summary > output.tsv
+datasets summary taxonomy taxon $(<Blast_res.txt) --as-json-lines | dataformat tsv taxonomy --template tax-summary > output.tsv
 
 
 
