@@ -13,7 +13,7 @@ echo "################################################################"
 echo "###Doing the blast over NCBI data base (it can take a while)####"
 echo "################################################################"
 
-blastn -query Without_Primers2.fasta -db nt -remote -out Blast_res.txt -outfmt "6 qseqid qlen sseqid slen length gaps qcovs pident staxids" 
+blastn -query Without_Primers2.fasta -db nt -remote -out Blast_res.txt -outfmt "6 qseqid qlen sseqid slen length gaps qcovs pident staxids" -qcov_hsp_perc 99
 
 # recovering the identity of each tax ID and putting it into a tsv file (this can also take a while)
 
