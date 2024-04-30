@@ -9,13 +9,19 @@ cutadapt -g ACTTGCCTGTCGCTCTATCTTCAWACTTCVGGRTGVCCAAARAATCA --revcomp -o Without
 
 # Doing the blast over NCBI data base (it can take a while)
 
-echo "##################Doing the blast over NCBI data base (it can take a while)####################"
+echo "################################################################"
+echo "###Doing the blast over NCBI data base (it can take a while)####"
+echo "################################################################"
 
 blastn -query Without_Primers2.fasta -db nt -remote -out Blast_res.txt -outfmt "6 qseqid qlen sseqid slen length gaps qcovs pident staxids" -perc_identity 99
 
 # recovering the identity of each tax ID and putting it into a tsv file (this can also take a while)
 
-echo "########recovering the identity of each tax ID and putting it into a tsv file (this can also take a while)###########"
+echo "#############################################################################"
+echo "###Recovering the identity of each tax ID and putting it into a tsv file ####"
+echo "###                         This can also take a while                   ####"
+echo "#############################################################################"
+
 
 datasets summary taxonomy taxon $(<Blast_res.txt) --as-json-lines | dataformat tsv taxonomy --template tax-summary > output.tsv
 
