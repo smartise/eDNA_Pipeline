@@ -1,10 +1,16 @@
+input="$1"
+
+if [ $# -eq 0 ]; then
+    echo "Error: Please provide the input file name."
+    exit 1
+fi
 ########################
 ###  primer removing using of COI using Cutadapt  ###
 ########################
 
 echo "###################removing the primers######################@"
 
-cutadapt -g TTTCTGTTGGTGCTGATATTGCCHACWAAYCATAAAGATATYGG --revcomp -o Without_Primers.fasta Sequences.fasta
+cutadapt -g TTTCTGTTGGTGCTGATATTGCCHACWAAYCATAAAGATATYGG --revcomp -o Without_Primers.fasta $input
 cutadapt -g ACTTGCCTGTCGCTCTATCTTCAWACTTCVGGRTGVCCAAARAATCA --revcomp -o Without_Primers2.fasta Without_Primers.fasta
 
 # Doing the blast over NCBI data base (it can take a while)
@@ -32,7 +38,6 @@ datasets summary taxonomy taxon $(<species_identification.txt) --as-json-lines |
 
 echo "#############################################################################"
 echo "###                fusing the blast and the Taxid dictionary             ####"
-echo "###                         This can also take a while                   ####"
 echo "#############################################################################"
 
 Rscript data_processing.R
