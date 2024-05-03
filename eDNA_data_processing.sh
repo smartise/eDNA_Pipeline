@@ -4,6 +4,7 @@ if [ $# -eq 0 ]; then
     echo "Error: Please provide the input file name."
     exit 1
 fi
+
 ########################
 ###  primer removing using of COI using Cutadapt  ###
 ########################
