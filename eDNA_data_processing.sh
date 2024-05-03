@@ -18,13 +18,22 @@ blastn -query Without_Primers2.fasta -db nt -remote -out Blast_res.txt -outfmt "
 # recovering the identity of each tax ID and putting it into a tsv file (this can also take a while)
 
 echo "#############################################################################"
+echo "###       transforming the blast res to be readable for datasets         ####"
+echo "#############################################################################"
+
+Rscript Remove_lowquery.R
+
+echo "#############################################################################"
 echo "###Recovering the identity of each tax ID and putting it into a tsv file ####"
 echo "###                         This can also take a while                   ####"
 echo "#############################################################################"
 
+datasets summary taxonomy taxon $(<species_identification.txt) --as-json-lines | dataformat tsv taxonomy --template tax-summary > output.tsv
 
-datasets summary taxonomy taxon $(<Blast_res.txt) --as-json-lines | dataformat tsv taxonomy --template tax-summary > output.tsv
+echo "#############################################################################"
+echo "###                fusing the blast and the Taxid dictionary             ####"
+echo "###                         This can also take a while                   ####"
+echo "#############################################################################"
 
-
-
+Rscript data_processing.R
 
