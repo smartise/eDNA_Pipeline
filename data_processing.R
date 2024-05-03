@@ -30,4 +30,9 @@ blast$Taxid <- as.character(blast$Taxid)
 final_doc<- blast %>%
   left_join(.,TaxID_names,by=c("Taxid"))
 
+final_doc=as.data.table(final_doc)
+final_doc <- final_doc[,"MaxIdent":=max(Pident), by=ASV]
+final_doc=final_doc[final_doc$Pident>=(final_doc$MaxIdent-1),]
+
+
 writeLines(as.character(final_doc), "Final.txt")
