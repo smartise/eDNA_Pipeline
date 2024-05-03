@@ -1,5 +1,4 @@
 
-
 # List of required packages
 required_packages <- c("data.table", "ggplot2", "vegan", "RColorBrewer", "stringr", "ade4")
 
@@ -18,4 +17,7 @@ blast$AccNum=do.call(rbind, strsplit(as.character(blast$GIAccNum), "\\|"))[,4]
 # Keeping only alignments with at least 99% of query cover
 blast=blast[blast$Qcovs>=99,]
 
-write.table(blast, "High_query_blast_res.txt", sep = ",", row.names = FALSE)
+TaxID <- blast$Taxid
+TaxID <- paste(TaxID, collapse = ",")
+writeLines(TaxID, "species_identification.txt")
+
