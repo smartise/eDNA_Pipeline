@@ -15,8 +15,6 @@ for (pkg in required_packages) {
   }
 }
 
-setwd("~/OneDrive/OBSIDIAN/Project_Panama/Data/eDNA/Lux/CO1")
-
 TaxID_names <- read.delim("output.tsv") 
 TaxID_names <- TaxID_names[, c(2,10,11, 15, 17, 19, 21, 23, 25)]
 
