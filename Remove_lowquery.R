@@ -1,3 +1,5 @@
+#set a Cran mirror 
+options(repos = c(CRAN = "https://cloud.r-project.org"))
 
 # List of required packages
 required_packages <- c("data.table", "ggplot2", "vegan", "RColorBrewer", "stringr", "ade4")
