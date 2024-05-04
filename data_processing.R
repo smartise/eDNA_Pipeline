@@ -4,7 +4,7 @@
 options(repos = c(CRAN = "https://cloud.r-project.org"))
 
 # List of required packages
-required_packages <- c("dplyr")
+required_packages <- c("dplyr", "data.table")
 
 for (pkg in required_packages) {
   if (!requireNamespace(pkg, quietly = TRUE)) {
@@ -35,4 +35,4 @@ final_doc <- final_doc[,"MaxIdent":=max(Pident), by=ASV]
 final_doc=final_doc[final_doc$Pident>=(final_doc$MaxIdent-1),]
 
 
-writeLines(as.character(final_doc), "Final.txt")
+save(final_doc, file = "final.RData")
